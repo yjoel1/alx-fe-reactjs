@@ -7,8 +7,8 @@ const EditRecipeForm = ({ recipe }) => {
   const [description, setDescription] = useState(recipe.description);
   const [editing, setEditing] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault(); // ✅ REQUIRED
     updateRecipe(recipe.id, { title, description });
     setEditing(false);
   };
@@ -18,7 +18,7 @@ const EditRecipeForm = ({ recipe }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginTop: '10px' }}>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         value={title}
@@ -39,4 +39,3 @@ const EditRecipeForm = ({ recipe }) => {
 };
 
 export default EditRecipeForm;
-
