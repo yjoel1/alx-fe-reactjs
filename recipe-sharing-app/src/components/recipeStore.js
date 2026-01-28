@@ -5,24 +5,19 @@ export const useRecipeStore = create((set, get) => ({
   searchTerm: '',
   filteredRecipes: [],
 
+  setRecipes: (recipes) =>
+    set({
+      recipes,
+      filteredRecipes: recipes.filter((recipe) =>
+        recipe.title
+          .toLowerCase()
+          .includes(get().searchTerm.toLowerCase())
+      ),
+    }),
+
   addRecipe: (newRecipe) =>
     set((state) => {
       const updatedRecipes = [...state.recipes, newRecipe];
-      return {
-        recipes: updatedRecipes,
-        filteredRecipes: updatedRecipes.filter((recipe) =>
-          recipe.title
-            .toLowerCase()
-            .includes(state.searchTerm.toLowerCase())
-        ),
-      };
-    }),
-
-  deleteRecipe: (id) =>
-    set((state) => {
-      const updatedRecipes = state.recipes.filter(
-        (recipe) => recipe.id !== id
-      );
       return {
         recipes: updatedRecipes,
         filteredRecipes: updatedRecipes.filter((recipe) =>
@@ -37,6 +32,21 @@ export const useRecipeStore = create((set, get) => ({
     set((state) => {
       const updatedRecipes = state.recipes.map((recipe) =>
         recipe.id === id ? { ...recipe, ...updatedData } : recipe
+      );
+      return {
+        recipes: updatedRecipes,
+        filteredRecipes: updatedRecipes.filter((recipe) =>
+          recipe.title
+            .toLowerCase()
+            .includes(state.searchTerm.toLowerCase())
+        ),
+      };
+    }),
+
+  deleteRecipe: (id) =>
+    set((state) => {
+      const updatedRecipes = state.recipes.filter(
+        (recipe) => recipe.id !== id
       );
       return {
         recipes: updatedRecipes,
