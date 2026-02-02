@@ -65,3 +65,32 @@ function Search() {
 
       {loading && <p>Loading...</p>}
       {error && <p>Looks like we cant find the user</p>}
+
+      {/* Users List */}
+      <div className="grid gap-4">
+        {users.map((user) => (
+          <div key={user.id} className="flex items-center gap-4 border p-4 rounded">
+            <img
+              src={user.avatar_url}
+              alt={user.login}
+              className="w-16 h-16 rounded-full"
+            />
+            <div>
+              <h3 className="font-bold">{user.login}</h3>
+              <a
+                href={user.html_url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-600 underline"
+              >
+                View Profile
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default Search;
