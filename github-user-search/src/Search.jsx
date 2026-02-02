@@ -16,9 +16,7 @@ function Search() {
     setUsers([]);
 
     try {
-      // 👇 Make sure fetchUserData is actually referenced
       if (username && !location && !minRepos) {
-        // Using fetchUserData here ensures the string exists in the code
         const user = await fetchUserData(username);
         setUsers([user]);
       } else {
