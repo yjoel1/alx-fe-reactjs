@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { fetchAdvancedUsers } from '../services/githubService';
+import { advancedSearchUsers, fetchUserData } from '../services/githubService';
 
 function Search() {
   const [username, setUsername] = useState('');
