@@ -6,7 +6,6 @@ function AddRecipeForm() {
   const [instructions, setInstructions] = useState("");
   const [errors, setErrors] = useState({});
 
-  // ✅ Extracted validate function
   const validate = () => {
     const newErrors = {};
     if (!title.trim()) newErrors.title = "Title is required";
@@ -23,19 +22,16 @@ function AddRecipeForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newErrors = validate(); // ✅ Use validate function
+    const newErrors = validate();
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // Form is valid
       const newRecipe = {
         title,
         ingredients: ingredients.split("\n"),
         instructions: instructions.split("\n"),
       };
       console.log("Submitted Recipe:", newRecipe);
-
-      // Clear form
       setTitle("");
       setIngredients("");
       setInstructions("");
@@ -43,15 +39,15 @@ function AddRecipeForm() {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold mb-6 text-center">Add a New Recipe</h1>
+    <div className="max-w-lg md:max-w-xl mx-auto mt-10 p-4 md:p-6 bg-white rounded-lg shadow-lg">
+      <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">Add a New Recipe</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Title */}
         <div>
           <label className="block font-semibold mb-1">Recipe Title</label>
           <input
             type="text"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 rounded px-3 py-2 md:px-4 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -64,7 +60,7 @@ function AddRecipeForm() {
         <div>
           <label className="block font-semibold mb-1">Ingredients (one per line)</label>
           <textarea
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 rounded px-3 py-2 md:px-4 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows="4"
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
@@ -78,7 +74,7 @@ function AddRecipeForm() {
         <div>
           <label className="block font-semibold mb-1">Preparation Steps (one per line)</label>
           <textarea
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 rounded px-3 py-2 md:px-4 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows="4"
             value={instructions}
             onChange={(e) => setInstructions(e.target.value)}
@@ -91,7 +87,7 @@ function AddRecipeForm() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition-colors"
+          className="w-full bg-blue-500 text-white font-semibold py-2 md:py-3 px-4 rounded hover:bg-blue-600 transition-colors"
         >
           Add Recipe
         </button>
