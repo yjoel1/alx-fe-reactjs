@@ -13,18 +13,6 @@ function RecipeDetail() {
 
   if (!recipe) return <p className="text-center mt-10">Loading...</p>;
 
-  // Example ingredients and steps
-  const ingredients = [
-    "1 cup ingredient A",
-    "2 tsp ingredient B",
-    "3 slices ingredient C",
-  ];
-  const steps = [
-    "Step 1: Do something.",
-    "Step 2: Do the next thing.",
-    "Step 3: Finish up.",
-  ];
-
   return (
     <div className="container mx-auto px-4 py-8">
       <Link
@@ -47,7 +35,7 @@ function RecipeDetail() {
           <div className="mb-6">
             <h2 className="text-2xl font-semibold mb-2">Ingredients</h2>
             <ul className="list-disc list-inside text-gray-700">
-              {ingredients.map((item, idx) => (
+              {recipe.ingredients.map((item, idx) => (
                 <li key={idx}>{item}</li>
               ))}
             </ul>
@@ -56,7 +44,7 @@ function RecipeDetail() {
           <div>
             <h2 className="text-2xl font-semibold mb-2">Instructions</h2>
             <ol className="list-decimal list-inside text-gray-700">
-              {steps.map((step, idx) => (
+              {recipe.instructions.map((step, idx) => (
                 <li key={idx} className="mb-2">
                   {step}
                 </li>
