@@ -1,19 +1,24 @@
 import { useState } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 import PostsComponent from "./components/PostsComponent";
+
+const queryClient = new QueryClient();
 
 function App() {
   const [showPosts, setShowPosts] = useState(true);
 
   return (
-    <div>
-      <h1>React Query Demo</h1>
+    <QueryClientProvider client={queryClient}>
+      <div>
+        <h1>React Query Demo</h1>
 
-      <button onClick={() => setShowPosts(!showPosts)}>
-        Toggle Posts Component
-      </button>
+        <button onClick={() => setShowPosts(!showPosts)}>
+          Toggle Posts Component
+        </button>
 
-      {showPosts && <PostsComponent />}
-    </div>
+        {showPosts && <PostsComponent />}
+      </div>
+    </QueryClientProvider>
   );
 }
 
